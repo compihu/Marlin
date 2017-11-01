@@ -480,10 +480,10 @@
   // Delta calibration menu
   // uncomment to add three points calibration menu option.
   // See http://minow.blogspot.com/index.html#4918805519571907051
-  #define DELTA_CALIBRATION_MENU
+  //#define DELTA_CALIBRATION_MENU
   
   // uncomment to add G33 Delta Auto-Calibration (Enable EEPROM_SETTINGS to store results)
-  #define DELTA_AUTO_CALIBRATION
+  //#define DELTA_AUTO_CALIBRATION
   
   #if ENABLED(DELTA_AUTO_CALIBRATION)
     // set the default number of probe points : n*n (1 -> 7)
@@ -606,7 +606,7 @@
  * Override with M92
  *                                      X, Y, Z, E0 [, E1[, E2[, E3[, E4]]]]
  */
-#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 80, 96 }  // default steps per unit for Kossel (GT2, 20 tooth)
+#define DEFAULT_AXIS_STEPS_PER_UNIT   { 160, 160, 160, 96 }  // default steps per unit for Kossel (GT2, 20 tooth)
 
 /**
  * Default Max Feed Rate (mm/s)
@@ -714,7 +714,7 @@
 /**
  * The BLTouch probe uses a Hall effect sensor and emulates a servo.
  */
-#define BLTOUCH
+//#define BLTOUCH
 #if ENABLED(BLTOUCH)
   //#define BLTOUCH_DELAY 375   // (ms) Enable and increase if needed
 #endif
@@ -929,7 +929,7 @@
  */
 //#define AUTO_BED_LEVELING_3POINT
 //#define AUTO_BED_LEVELING_LINEAR
-#define AUTO_BED_LEVELING_BILINEAR
+//#define AUTO_BED_LEVELING_BILINEAR
 //#define AUTO_BED_LEVELING_UBL
 //#define MESH_BED_LEVELING
 
