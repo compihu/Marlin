@@ -6439,7 +6439,7 @@ inline void gcode_M17() {
 
     const millis_t ms = millis();
     if (ELAPSED(ms, next_buzz)) {
-      if (max_beep_count < 0 || runout_beep < max_beep_count + 5) { // Only beep as long as we're supposed to
+      if (max_beep_count < 0 || runout_beep < max_beep_count) { // Only beep as long as we're supposed to
         next_buzz = ms + ((max_beep_count < 0 || runout_beep < max_beep_count) ? 2500 : 400);
         BUZZ(300, 2000);
         runout_beep++;
