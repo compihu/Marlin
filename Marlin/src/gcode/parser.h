@@ -156,6 +156,11 @@ public:
   // This uses 54 bytes of SRAM to speed up seen/value
   static void parse(char * p);
 
+  #if ENABLED(CNC_COORDINATE_SYSTEMS)
+    // Parse the next parameter as a new command
+    static bool chain();
+  #endif
+
   // The code value pointer was set
   FORCE_INLINE static bool has_value() { return value_ptr != NULL; }
 
@@ -293,15 +298,16 @@ public:
   void unknown_command_error();
 
   // Provide simple value accessors with default option
-  FORCE_INLINE static float    floatval(const char c, const float dval=0.0)   { return seenval(c) ? value_float()        : dval; }
-  FORCE_INLINE static bool     boolval(const char c)                          { return seenval(c) ? value_bool()         : seen(c); }
-  FORCE_INLINE static uint8_t  byteval(const char c, const uint8_t dval=0)    { return seenval(c) ? value_byte()         : dval; }
-  FORCE_INLINE static int16_t  intval(const char c, const int16_t dval=0)     { return seenval(c) ? value_int()          : dval; }
-  FORCE_INLINE static uint16_t ushortval(const char c, const uint16_t dval=0) { return seenval(c) ? value_ushort()       : dval; }
-  FORCE_INLINE static int32_t  longval(const char c, const int32_t dval=0)    { return seenval(c) ? value_long()         : dval; }
-  FORCE_INLINE static uint32_t ulongval(const char c, const uint32_t dval=0)  { return seenval(c) ? value_ulong()        : dval; }
-  FORCE_INLINE static float    linearval(const char c, const float dval=0.0)  { return seenval(c) ? value_linear_units() : dval; }
-  FORCE_INLINE static float    celsiusval(const char c, const float dval=0.0) { return seenval(c) ? value_celsius()      : dval; }
+  FORCE_INLINE static float       floatval(const char c, const float dval=0.0)   { return seenval(c) ? value_float()        : dval; }
+  FORCE_INLINE static bool        boolval(const char c)                          { return seenval(c) ? value_bool()         : seen(c); }
+  FORCE_INLINE static uint8_t     byteval(const char c, const uint8_t dval=0)    { return seenval(c) ? value_byte()         : dval; }
+  FORCE_INLINE static int16_t     intval(const char c, const int16_t dval=0)     { return seenval(c) ? value_int()          : dval; }
+  FORCE_INLINE static uint16_t    ushortval(const char c, const uint16_t dval=0) { return seenval(c) ? value_ushort()       : dval; }
+  FORCE_INLINE static int32_t     longval(const char c, const int32_t dval=0)    { return seenval(c) ? value_long()         : dval; }
+  FORCE_INLINE static uint32_t    ulongval(const char c, const uint32_t dval=0)  { return seenval(c) ? value_ulong()        : dval; }
+  FORCE_INLINE static float       linearval(const char c, const float dval=0.0)  { return seenval(c) ? value_linear_units() : dval; }
+  FORCE_INLINE static float       celsiusval(const char c, const float dval=0.0) { return seenval(c) ? value_celsius()      : dval; }
+  FORCE_INLINE static const char* strval(const char c)                           { return seenval(c) ? value_ptr            : NULL; }
 
 };
 

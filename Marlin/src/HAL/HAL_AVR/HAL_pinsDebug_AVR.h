@@ -58,7 +58,7 @@ void HAL_analog_pin_state(char buffer[], int8_t pin) {
 #define REPORT_NAME_ANALOG(NAME, COUNTER) _ADD_PIN(#NAME, COUNTER)
 
 #include "../../pins/pinsDebug_list.h"
-#line 51
+#line 62
 
 // manually add pins that have names that are macros which don't play well with these macros
 #if SERIAL_PORT == 0 && (AVR_ATmega2560_FAMILY || AVR_ATmega1284_FAMILY)
@@ -82,7 +82,7 @@ void HAL_analog_pin_state(char buffer[], int8_t pin) {
 
 typedef struct {
   const char * const name;
-  uint8_t pin;
+  pin_t pin;
   bool is_digital;
 } PinInfo;
 
@@ -109,7 +109,7 @@ const PinInfo pin_array[] PROGMEM = {
   #endif
 
   #include "../../pins/pinsDebug_list.h"
-  #line 102
+  #line 113
 
 };
 
@@ -457,7 +457,7 @@ static void print_input_or_output(const bool isout) {
 }
 
 // pretty report with PWM info
-inline void report_pin_state_extended(int8_t pin, bool ignore, bool extended = false, const char *start_string = "") {
+inline void report_pin_state_extended(pin_t pin, bool ignore, bool extended = false, const char *start_string = "") {
   uint8_t temp_char;
   char *name_mem_pointer, buffer[30];   // for the sprintf statements
   bool found = false, multi_name_pin = false;

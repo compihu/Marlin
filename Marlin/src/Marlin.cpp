@@ -75,7 +75,7 @@
 #endif
 
 #if HAS_SERVOS
-  #include "HAL/servo.h"
+  #include "module/servo.h"
 #endif
 
 #if HAS_DIGIPOTSS
@@ -138,6 +138,10 @@
   #include "feature/caselight.h"
 #endif
 
+#if HAS_FANMUX
+  #include "feature/fanmux.h"
+#endif
+
 #if (ENABLED(SWITCHING_EXTRUDER) && !DONT_SWITCH) || ENABLED(SWITCHING_NOZZLE) || ENABLED(PARKING_EXTRUDER)
   #include "module/tool_change.h"
 #endif
@@ -165,7 +169,7 @@ bool axis_homed[XYZ] = { false }, axis_known_position[XYZ] = { false };
 
 #if FAN_COUNT > 0
   int16_t fanSpeeds[FAN_COUNT] = { 0 };
-  #if ENABLED(EXTRA_FAN_SPEEDS)
+  #if ENABLED(EXTRA_FAN_SPEED)
     int16_t old_fanSpeeds[FAN_COUNT],
             new_fanSpeeds[FAN_COUNT];
   #endif
@@ -243,35 +247,6 @@ void setup_powerhold() {
   #endif
 }
 
-#if HAS_SERVOS
-
-  HAL_SERVO_LIB servo[NUM_SERVOS];
-
-  void servo_init() {
-    #if NUM_SERVOS >= 1 && HAS_SERVO_0
-      servo[0].attach(SERVO0_PIN);
-      servo[0].detach(); // Just set up the pin. We don't have a position yet. Don't move to a random position.
-    #endif
-    #if NUM_SERVOS >= 2 && HAS_SERVO_1
-      servo[1].attach(SERVO1_PIN);
-      servo[1].detach();
-    #endif
-    #if NUM_SERVOS >= 3 && HAS_SERVO_2
-      servo[2].attach(SERVO2_PIN);
-      servo[2].detach();
-    #endif
-    #if NUM_SERVOS >= 4 && HAS_SERVO_3
-      servo[3].attach(SERVO3_PIN);
-      servo[3].detach();
-    #endif
-
-    #if HAS_Z_SERVO_ENDSTOP
-      servo_probe_init();
-    #endif
-  }
-
-#endif // HAS_SERVOS
-
 /**
  * Stepper Reset (RigidBoard, et.al.)
  */
@@ -297,10 +272,13 @@ void setup_powerhold() {
 /**
  * Sensitive pin test for M42, M226
  */
-bool pin_is_protected(const int8_t pin) {
-  static const int8_t sensitive_pins[] PROGMEM = SENSITIVE_PINS;
-  for (uint8_t i = 0; i < COUNT(sensitive_pins); i++)
-    if (pin == (int8_t)pgm_read_byte(&sensitive_pins[i])) return true;
+bool pin_is_protected(const pin_t pin) {
+  static const pin_t sensitive_pins[] PROGMEM = SENSITIVE_PINS;
+  for (uint8_t i = 0; i < COUNT(sensitive_pins); i++) {
+    pin_t sensitive_pin;
+    memcpy_P(&sensitive_pin, &sensitive_pins[i], sizeof(pin_t));
+    if (pin == sensitive_pin) return true;
+  }
   return false;
 }
 
@@ -515,7 +493,12 @@ void manage_inactivity(bool ignore_stepper_queue/*=false*/) {
     tmc2130_checkOverTemp();
   #endif
 
-  planner.check_axes_activity();
+  // Limit check_axes_activity frequency to 10Hz
+  static millis_t next_check_axes_ms = 0;
+  if (ELAPSED(ms, next_check_axes_ms)) {
+    planner.check_axes_activity();
+    next_check_axes_ms = ms + 100UL;
+  }
 }
 
 /**
@@ -654,7 +637,7 @@ void setup() {
     Max7219_init();
   #endif
 
-  #ifdef DISABLE_JTAG
+  #if ENABLED(DISABLE_JTAG)
     // Disable JTAG on AT90USB chips to free up pins for IO
     MCUCR = 0x80;
     MCUCR = 0x80;
@@ -733,6 +716,10 @@ void setup() {
     servo_init();
   #endif
 
+  #if HAS_Z_SERVO_ENDSTOP
+    servo_probe_init();
+  #endif
+
   #if HAS_PHOTOGRAPH
     OUT_WRITE(PHOTOGRAPH_PIN, LOW);
   #endif
@@ -789,7 +776,6 @@ void setup() {
   #endif
 
   #if ENABLED(NEOPIXEL_LED)
-    SET_OUTPUT(NEOPIXEL_PIN);
     setup_neopixel();
   #endif
 
@@ -814,23 +800,8 @@ void setup() {
 
   lcd_init();
 
-  #ifndef CUSTOM_BOOTSCREEN_TIMEOUT
-    #define CUSTOM_BOOTSCREEN_TIMEOUT 2500
-  #endif
-
   #if ENABLED(SHOW_BOOTSCREEN)
-    #if ENABLED(DOGLCD)                           // On DOGM the first bootscreen is already drawn
-      #if ENABLED(SHOW_CUSTOM_BOOTSCREEN)
-        safe_delay(CUSTOM_BOOTSCREEN_TIMEOUT);    // Custom boot screen pause
-        lcd_bootscreen();                         // Show Marlin boot screen
-      #endif
-      safe_delay(BOOTSCREEN_TIMEOUT);             // Pause
-    #elif ENABLED(ULTRA_LCD)
-      lcd_bootscreen();
-      #if DISABLED(SDSUPPORT)
-        lcd_init();
-      #endif
-    #endif
+    lcd_bootscreen();
   #endif
 
   #if ENABLED(MIXING_EXTRUDER) && MIXING_VIRTUAL_TOOLS > 1
