@@ -54,13 +54,13 @@
  * Uncomment LINEAR_PLUS for lineal plus models
  * Uncomment UPGRADED for the upgraded models
  */
-//#define LINEAR_PLUS
-//#define UPGRADED
+#define LINEAR_PLUS
+#define UPGRADED
 
 /* Heat Bed
  * Uncomment if you have a heat bed on your printer
  */
-//#define HEAT_BED
+#define HEAT_BED
 
 /* Delta Height
  * Printable height of your printer in mm
@@ -68,13 +68,13 @@
  * I recommend to get them from autocalibration 
  * NEEDS EEPROM CLEAR!!
  */
-#define DELTA_HEIGHT 240
+#define DELTA_HEIGHT 289
 
 /* Steppers Direction
  * Uncomment if your stepper move backwards
  * Enable for TMC2100 if you didn't made any change to the stock cables
  */
-//#define INVERT_MOTORS
+#define INVERT_MOTORS
 
 /* Printer Z-Probe Type
  * Probe for autoleveling and/or autocalibration
@@ -98,9 +98,9 @@
  */
 //#define BLTOUCH
 //#define INDUCTIVE
-//#define NO_PROBE
+#define NO_PROBE
 //#define NC_PROBE
-#define PROBE_MANUALLY
+//#define PROBE_MANUALLY
 
 /* Z-Probe Offset From The Nozzle
  * Using scoth tape fix a piece of paper to your bed, then home
@@ -164,7 +164,7 @@
 /* Extruder(s) Stepper Direction
  * If your extruder goes backwards, uncomment the line
  */
-//#define INVERT_E0
+#define INVERT_E0
 //#define INVERT_E1 // only if you have 
 
 /* Extruder Steps Per Millimeter
@@ -196,7 +196,7 @@
  * non-standard baudrates
  * If your using Windows you probably need to set this to 250000
  */
-#define BAUDRATE 115200
+#define BAUDRATE 250000
 
 
 /***************************************************************/
@@ -307,7 +307,7 @@
 
 // Optional custom name for your RepStrap or other custom machine
 // Displayed in the LCD "Ready" message
-#define CUSTOM_MACHINE_NAME "Kossel"
+#define CUSTOM_MACHINE_NAME "Anycubic plus"
 
 // Define this to set a unique identifier for this printer, (Used by some programs to differentiate between machines)
 // You can use an online service to generate a random UUID. (eg http://www.uuidgenerator.net/version4)
@@ -552,9 +552,9 @@
   // If you are using a pre-configured hotend then you can use one of the value sets by uncommenting it
 
   // Ultimaker
-  #define  DEFAULT_Kp 22.2
-  #define  DEFAULT_Ki 1.08
-  #define  DEFAULT_Kd 114
+  #define  DEFAULT_Kp 18.06
+  #define  DEFAULT_Ki 0.94
+  #define  DEFAULT_Kd 86.89
 
   // MakerGear
   //#define  DEFAULT_Kp 7.0
@@ -596,9 +596,9 @@
 
   //120V 250W silicone heater into 4mm borosilicate (MendelMax 1.5+)
   //from FOPDT model - kp=.39 Tp=405 Tdead=66, Tc set to 79.2, aggressive factor of .15 (vs .1, 1, 10)
-  #define  DEFAULT_bedKp 10.00
-  #define  DEFAULT_bedKi .023
-  #define  DEFAULT_bedKd 305.4
+  #define  DEFAULT_bedKp 365.57
+  #define  DEFAULT_bedKi 69.72
+  #define  DEFAULT_bedKd 479.17
 
   //120V 250W silicone heater into 4mm borosilicate (MendelMax 1.5+)
   //from pidautotune
@@ -621,7 +621,7 @@
 // This option prevents a single extrusion longer than EXTRUDE_MAXLENGTH.
 // Note that for Bowden Extruders a too-small value here may prevent loading.
 #define PREVENT_LENGTHY_EXTRUDE
-#define EXTRUDE_MAXLENGTH 200
+#define EXTRUDE_MAXLENGTH 680
 
 //===========================================================================
 //======================== Thermal Runaway Protection =======================
@@ -669,10 +669,10 @@
   // Make delta curves from many straight lines (linear interpolation).
   // This is a trade-off between visible corners (not enough segments)
   // and processor overload (too many expensive sqrt calls).
-  #define DELTA_SEGMENTS_PER_SECOND 160
+  #define DELTA_SEGMENTS_PER_SECOND 100
 
   // After homing move down to a height where XY movement is unconstrained
-  #define DELTA_HOME_TO_SAFE_ZONE
+  //#define DELTA_HOME_TO_SAFE_ZONE
 
   // Delta calibration menu
   // uncomment to add three points calibration menu option.
@@ -689,9 +689,9 @@
     #define DELTA_CALIBRATION_DEFAULT_POINTS GRID_POINTS
 
     // Enable and set these values based on results of 'G33 A'
-    //#define H_FACTOR 1.01
-    //#define R_FACTOR 2.61
-    //#define A_FACTOR 0.87
+    #define H_FACTOR 1.08
+    #define R_FACTOR 2.05
+    #define A_FACTOR 0.54
 
   #endif
 
@@ -713,7 +713,7 @@
   #if ENABLED(LINEAR_PLUS) && DISABLED(UPGRADED)
     #define DELTA_DIAGONAL_ROD 271.5 // mm
   #elif ENABLED(LINEAR_PLUS) && ENABLED(UPGRADED)
-    #define DELTA_DIAGONAL_ROD 268.0 // mm
+    #define DELTA_DIAGONAL_ROD 267.0 // mm
   #else
     #define DELTA_DIAGONAL_ROD 218 // mm
   #endif
@@ -960,9 +960,9 @@
  * These options are most useful for the BLTouch probe, but may also improve
  * readings with inductive probes and piezo sensors.
  */
-//#define PROBING_HEATERS_OFF       // Turn heaters off when probing
-//#define PROBING_FANS_OFF          // Turn fans off when probing
-#define DELAY_BEFORE_PROBING 200  // (ms) To prevent vibrations from triggering piezo sensors
+#define PROBING_HEATERS_OFF       // Turn heaters off when probing
+#define PROBING_FANS_OFF          // Turn fans off when probing
+//#define DELAY_BEFORE_PROBING 200  // (ms) To prevent vibrations from triggering piezo sensors
 
 // A probe that is deployed and stowed with a solenoid pin (SOL1_PIN)
 //#define SOLENOID_PROBE
@@ -999,7 +999,7 @@
 #define Z_PROBE_OFFSET_FROM_EXTRUDER ZPROBE_Z_OFFSET   // Z offset: -below +above  [the nozzle]
 
 // X and Y axis travel speed (mm/m) between probes
-#define XY_PROBE_SPEED 4000
+#define XY_PROBE_SPEED 5000
 
 // Speed for the first approach when double-probing (MULTIPLE_PROBING == 2)
 #define Z_PROBE_SPEED_FAST (HOMING_FEEDRATE_Z / 4)
