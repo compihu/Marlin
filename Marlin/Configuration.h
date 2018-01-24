@@ -98,8 +98,8 @@
  */
 //#define BLTOUCH
 //#define INDUCTIVE
-#define NO_PROBE
-//#define NC_PROBE
+//#define NO_PROBE
+#define NC_PROBE
 //#define PROBE_MANUALLY
 
 /* Z-Probe Offset From The Nozzle
@@ -112,7 +112,7 @@
  */
 #define ZPROBE_X_OFFSET        0
 #define ZPROBE_Y_OFFSET        0
-#define ZPROBE_Z_OFFSET        0
+#define ZPROBE_Z_OFFSET        -16.57
 
 /* Bed Leveling Type
  * Type of bed leveling you want to use.
@@ -128,7 +128,7 @@
  * A higher the value means better results
  * Keep a low value for manual leveling
  */
-#define GRID_POINTS        5
+#define GRID_POINTS        7
 
 /* Bed Margin For Probing
  * Margin around perimiter of bed for probing
