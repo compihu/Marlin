@@ -186,7 +186,7 @@
  * To enable just uncomment the next line, all the TRIGORILLA board pins
  * definitions are all ready done
  */
-//#define USE_CONTROLLER_FAN
+#define USE_CONTROLLER_FAN
 #if ENABLED(USE_CONTROLLER_FAN)
   #define CONTROLLER_FAN_PIN FAN1_PIN    // FAN1 slot on the TRIGORILLA board
   #define CONTROLLERFAN_SECS 60          // Duration in seconds for the fan to run after all motors are disabled
