@@ -697,7 +697,7 @@
 
   // Print surface diameter/2 minus unreachable space (avoid collisions with vertical towers).
   #if ENABLED(LINEAR_PLUS)
-    #define DELTA_PRINTABLE_RADIUS 116.0 // mm
+    #define DELTA_PRINTABLE_RADIUS 120.0 // mm
   #else
     #define DELTA_PRINTABLE_RADIUS 90.0 // mm
   #endif
