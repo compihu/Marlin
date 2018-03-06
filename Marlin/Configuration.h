@@ -415,7 +415,7 @@
  *
  * :{ 0:'No power switch', 1:'ATX', 2:'X-Box 360' }
  */
-#define POWER_SUPPLY 1
+#define POWER_SUPPLY 0
 
 #if POWER_SUPPLY > 0
   // Enable this option to leave the PSU off at startup.
@@ -615,8 +615,8 @@
 // It also enables the M302 command to set the minimum extrusion temperature
 // or to allow moving the extruder regardless of the hotend temperature.
 // *** IT IS HIGHLY RECOMMENDED TO LEAVE THIS OPTION ENABLED! ***
-//#define PREVENT_COLD_EXTRUSION
-//#define EXTRUDE_MINTEMP 170
+#define PREVENT_COLD_EXTRUSION
+#define EXTRUDE_MINTEMP 170
 
 // This option prevents a single extrusion longer than EXTRUDE_MAXLENGTH.
 // Note that for Bowden Extruders a too-small value here may prevent loading.
@@ -1424,7 +1424,7 @@
 #endif
 
 // Delta only homes to Z
-#define HOMING_FEEDRATE_Z  (200*60)
+#define HOMING_FEEDRATE_Z  (170*60)
 
 // @section calibrate
 
@@ -1552,9 +1552,9 @@
 
 #if ENABLED(NOZZLE_PARK_FEATURE)
   // Specify a park position as { X, Y, Z }
-  #define NOZZLE_PARK_POINT { 0, 0, Z_MAX_POS } // An undocumented feature is that the Z point is added to the current postion in the pause menu (G27 P2 NOZZLE_PARK_POINT.Z)
-  #define NOZZLE_PARK_XY_FEEDRATE 225   // X and Y axes feedrate in mm/s (also used for delta printers Z axis)
-  #define NOZZLE_PARK_Z_FEEDRATE 200      // Z axis feedrate in mm/s (not used for delta printers)
+  #define NOZZLE_PARK_POINT { 0, 0, 255 } // An undocumented feature is that the Z point is added to the current postion in the pause menu (G27 P2 NOZZLE_PARK_POINT.Z)
+  #define NOZZLE_PARK_XY_FEEDRATE 175   // X and Y axes feedrate in mm/s (also used for delta printers Z axis)
+  #define NOZZLE_PARK_Z_FEEDRATE 150      // Z axis feedrate in mm/s (not used for delta printers)
 #endif
 
 /**
