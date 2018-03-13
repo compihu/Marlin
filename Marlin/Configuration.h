@@ -68,7 +68,7 @@
  * I recommend to get them from autocalibration 
  * NEEDS EEPROM CLEAR!!
  */
-#define DELTA_HEIGHT 289
+#define DELTA_HEIGHT 301.38
 
 /* Steppers Direction
  * Uncomment if your stepper move backwards
@@ -552,9 +552,9 @@
   // If you are using a pre-configured hotend then you can use one of the value sets by uncommenting it
 
   // Ultimaker
-  #define  DEFAULT_Kp 18.06
-  #define  DEFAULT_Ki 0.94
-  #define  DEFAULT_Kd 86.89
+  #define  DEFAULT_Kp 23.3
+  #define  DEFAULT_Ki 1.99
+  #define  DEFAULT_Kd 68.34
 
   // MakerGear
   //#define  DEFAULT_Kp 7.0
@@ -580,7 +580,7 @@
 // If your configuration is significantly different than this and you don't understand the issues involved, you probably
 // shouldn't use bed PID until someone else verifies your hardware works.
 // If this is enabled, find your own PID constants below.
-//#define PIDTEMPBED
+#define PIDTEMPBED
 
 //#define BED_LIMIT_SWITCHING
 
@@ -596,9 +596,9 @@
 
   //120V 250W silicone heater into 4mm borosilicate (MendelMax 1.5+)
   //from FOPDT model - kp=.39 Tp=405 Tdead=66, Tc set to 79.2, aggressive factor of .15 (vs .1, 1, 10)
-  #define  DEFAULT_bedKp 365.57
-  #define  DEFAULT_bedKi 69.72
-  #define  DEFAULT_bedKd 479.17
+  #define  DEFAULT_bedKp 314.5
+  #define  DEFAULT_bedKi 56.46
+  #define  DEFAULT_bedKd 437.99
 
   //120V 250W silicone heater into 4mm borosilicate (MendelMax 1.5+)
   //from pidautotune
@@ -689,9 +689,9 @@
     #define DELTA_CALIBRATION_DEFAULT_POINTS GRID_POINTS
 
     // Enable and set these values based on results of 'G33 A'
-    #define H_FACTOR 1.08
-    #define R_FACTOR 2.05
-    #define A_FACTOR 0.54
+    #define H_FACTOR 1.11
+    #define R_FACTOR 2.04
+    #define A_FACTOR 0.55
 
   #endif
 
@@ -721,11 +721,11 @@
   // height from z=0 to home position
   //#define DELTA_HEIGHT 250.00 // get this value from auto calibrate
 
-  #define DELTA_ENDSTOP_ADJ { 0.0, 0.0, 0.0 } // get these from auto calibrate
+  #define DELTA_ENDSTOP_ADJ { 0.56, 0.80, 0.0 } // get these from auto calibrate
 
   // Horizontal distance bridged by diagonal push rods when effector is centered.
   #if ENABLED(LINEAR_PLUS)
-    #define DELTA_RADIUS 134.34 //mm  Get this value from auto calibrate
+    #define DELTA_RADIUS 132.80 //mm  Get this value from auto calibrate
   #else
     #define DELTA_RADIUS 101.31 //mm  Get this value from auto calibrate
   #endif
@@ -733,7 +733,7 @@
   // Trim adjustments for individual towers
   // tower angle corrections for X and Y tower / rotate XYZ so Z tower angle = 0
   // measured in degrees anticlockwise looking from above the printer
-  #define DELTA_TOWER_ANGLE_TRIM { 0.0, 0.0, 0.0 } // get these values from auto calibrate
+  #define DELTA_TOWER_ANGLE_TRIM { 0.37, -0.50, 0.13 } // get these values from auto calibrate
 
   // delta radius and diaginal rod adjustments measured in mm
   //#define DELTA_RADIUS_TRIM_TOWER { 0.0, 0.0, 0.0 }
