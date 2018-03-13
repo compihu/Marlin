@@ -98,8 +98,8 @@
  */
 //#define BLTOUCH
 //#define INDUCTIVE
-//#define NO_PROBE
-#define NC_PROBE
+#define NO_PROBE
+//#define NC_PROBE
 //#define PROBE_MANUALLY
 
 /* Z-Probe Offset From The Nozzle
@@ -112,7 +112,7 @@
  */
 #define ZPROBE_X_OFFSET        0
 #define ZPROBE_Y_OFFSET        0
-#define ZPROBE_Z_OFFSET        -16.57
+#define ZPROBE_Z_OFFSET        0
 
 /* Bed Leveling Type
  * Type of bed leveling you want to use.
@@ -1424,7 +1424,7 @@
 #endif
 
 // Delta only homes to Z
-#define HOMING_FEEDRATE_Z  (170*60)
+#define HOMING_FEEDRATE_Z  (150*60)
 
 // @section calibrate
 
