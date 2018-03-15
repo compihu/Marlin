@@ -68,7 +68,7 @@
  * I recommend to get them from autocalibration 
  * NEEDS EEPROM CLEAR!!
  */
-#define DELTA_HEIGHT 301.38
+#define DELTA_HEIGHT 301.18
 
 /* Steppers Direction
  * Uncomment if your stepper move backwards
@@ -689,9 +689,9 @@
     #define DELTA_CALIBRATION_DEFAULT_POINTS GRID_POINTS
 
     // Enable and set these values based on results of 'G33 A'
-    #define H_FACTOR 1.11
-    #define R_FACTOR 2.04
-    #define A_FACTOR 0.55
+    #define H_FACTOR 1.10
+    #define R_FACTOR 1.96
+    #define A_FACTOR 0.52
 
   #endif
 
@@ -721,11 +721,11 @@
   // height from z=0 to home position
   //#define DELTA_HEIGHT 250.00 // get this value from auto calibrate
 
-  #define DELTA_ENDSTOP_ADJ { 0.56, 0.80, 0.0 } // get these from auto calibrate
+  #define DELTA_ENDSTOP_ADJ { -0.79, -0.91, 0.0 } // get these from auto calibrate
 
   // Horizontal distance bridged by diagonal push rods when effector is centered.
   #if ENABLED(LINEAR_PLUS)
-    #define DELTA_RADIUS 132.80 //mm  Get this value from auto calibrate
+    #define DELTA_RADIUS 132.83 //mm  Get this value from auto calibrate
   #else
     #define DELTA_RADIUS 101.31 //mm  Get this value from auto calibrate
   #endif
@@ -733,7 +733,7 @@
   // Trim adjustments for individual towers
   // tower angle corrections for X and Y tower / rotate XYZ so Z tower angle = 0
   // measured in degrees anticlockwise looking from above the printer
-  #define DELTA_TOWER_ANGLE_TRIM { 0.37, -0.50, 0.13 } // get these values from auto calibrate
+  #define DELTA_TOWER_ANGLE_TRIM { 0.39, -0.58, 0.19 } // get these values from auto calibrate
 
   // delta radius and diaginal rod adjustments measured in mm
   //#define DELTA_RADIUS_TRIM_TOWER { 0.0, 0.0, 0.0 }
@@ -1784,7 +1784,7 @@
 // If you have a speaker that can produce tones, enable it here.
 // By default Marlin assumes you have a buzzer with a fixed frequency.
 //
-#define SPEAKER
+// #define SPEAKER
 
 //
 // The duration and frequency for the UI feedback sound.
