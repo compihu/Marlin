@@ -138,7 +138,7 @@
  * Start with a high value, and reduce according to your setup
  * NEEDS EEPROM CLEAR!!
  */
-#define BED_MARGIN 10
+#define BED_MARGIN 13
 
 /* Extruder Count
  * If your using 2 Extruders, uncomment this line
