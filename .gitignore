@@ -134,7 +134,9 @@ vc-fileutils.settings
 
 #VScode
 .vscode
+.vscode/*.db
 .vscode/c_cpp_properties.json
+.vscode/launch.json
 
 #cmake
 CMakeLists.txt
@@ -143,6 +145,4 @@ CMakeListsPrivate.txt
 
 #CLion
 cmake-build-*
-.vscode/launch.json
-.vscode/*.db
 .vscode/.browse.c_cpp.db*
