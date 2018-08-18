@@ -573,10 +573,10 @@
   //#define DEFAULT_Ki 2.25
   //#define DEFAULT_Kd 440
 
-  //Anycubic V5 J-head
-  #define  DEFAULT_Kp 16.68
-  #define  DEFAULT_Ki 1.09
-  #define  DEFAULT_Kd 63.53
+  //Anycubic V5 J-head 50w
+  #define DEFAULT_Kp 14.46
+  #define DEFAULT_Ki 0.87
+  #define DEFAULT_Kd 60.43
 
 #endif // PIDTEMP
 
