@@ -373,9 +373,9 @@
   // If you are using a pre-configured hotend then you can use one of the value sets by uncommenting it
 
   // Stock DS-11 tuned for 70C
-  #define  DEFAULT_Kp 22.2
-  #define  DEFAULT_Ki 1.08
-  #define  DEFAULT_Kd 114
+#define DEFAULT_Kp 29.12
+#define DEFAULT_Ki 3.15
+#define DEFAULT_Kd 67.39
 
   // Ultimaker
   //#define DEFAULT_Kp 22.2
@@ -427,10 +427,10 @@
 
   //#define PID_BED_DEBUG // Sends debug data to the serial port.
 
-  //Stock DS-11 Bed Tuned for 70C
-  #define  DEFAULT_bedKp 426.68
-  #define  DEFAULT_bedKi 78.92
-  #define  DEFAULT_bedKd 576.71
+  //Stock DS-11 Bed Tuned for 65C
+#define DEFAULT_bedKp 517.94
+#define DEFAULT_bedKi 101.98
+#define DEFAULT_bedKd 657.66
 
   //120V 250W silicone heater into 4mm borosilicate (MendelMax 1.5+)
   //from FOPDT model - kp=.39 Tp=405 Tdead=66, Tc set to 79.2, aggressive factor of .15 (vs .1, 1, 10)
@@ -615,7 +615,7 @@
  * Override with M203
  *                                      X, Y, Z, E0 [, E1[, E2[, E3[, E4]]]]
  */
-#define DEFAULT_MAX_FEEDRATE          { 300, 300, 5, 25 }
+#define DEFAULT_MAX_FEEDRATE          { 300, 300, 10, 25 }
 
 /**
  * Default Max Acceleration (change/s) change = mm/s
