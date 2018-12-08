@@ -165,14 +165,14 @@
 /* Extruder(s) Stepper Direction
  * If your extruder goes backwards, uncomment the line
  */
-#define INVERT_E0
+//#define INVERT_E0
 //#define INVERT_E1 // only if you have 
 
 /* Extruder Steps Per Millimeter
  * Put on this section your calibrated steps per millimiter
  * NEEDS EEPROM CLEAR!!
  */
-#define E0_STEPS 96
+#define E0_STEPS 140
 //#define E1_STEPS 96
 
 /* Graphic Controller type
@@ -1200,7 +1200,6 @@
 #else
   #define INVERT_E0_DIR true
 #endif
-#define INVERT_E0_DIR false
 #define INVERT_E1_DIR false
 #define INVERT_E2_DIR false
 #define INVERT_E3_DIR false
