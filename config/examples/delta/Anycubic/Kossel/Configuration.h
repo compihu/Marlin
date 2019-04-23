@@ -25,16 +25,16 @@
  * Choose your version:
  */
 // normal size or plus?
-//#define ANYCUBIC_KOSSEL_PLUS
+#define ANYCUBIC_KOSSEL_PLUS
 
 // Anycubic Probe version 1 or 2 see README.md; 0 for no probe
-#define ANYCUBIC_PROBE_VERSION 0
+#define ANYCUBIC_PROBE_VERSION 2
 
 // Heated Bed:
 // 0 ... no heated bed
 // 1 ... aluminium heated bed with "BuildTak-like" sticker
 // 2 ... ultrabase heated bed
-#define ANYCUBIC_KOSSEL_ENABLE_BED 0
+#define ANYCUBIC_KOSSEL_ENABLE_BED 1
 
 /**
  * Configuration.h
@@ -139,7 +139,7 @@
  *
  * :[2400, 9600, 19200, 38400, 57600, 115200, 250000, 500000, 1000000]
  */
-#define BAUDRATE 115200
+#define BAUDRATE 250000
 
 // Enable the Bluetooth serial interface on AT90USB devices
 //#define BLUETOOTH
@@ -152,7 +152,7 @@
 
 // Optional custom name for your RepStrap or other custom machine
 // Displayed in the LCD "Ready" message
-#define CUSTOM_MACHINE_NAME "ANYCUBIC Kossel"
+#define CUSTOM_MACHINE_NAME "ANYCUBIC Linear Plus"
 
 // Define this to set a unique identifier for this printer, (Used by some programs to differentiate between machines)
 // You can use an online service to generate a random UUID. (eg http://www.uuidgenerator.net/version4)
@@ -481,9 +481,14 @@
   //#define DEFAULT_Kd 440
 
   // Anycubic Kossel - run 'M106 S255' & 'M303 E0 C10 S200'
-  #define DEFAULT_Kp 22.36
-  #define DEFAULT_Ki 1.63
-  #define DEFAULT_Kd 76.48
+  //#define DEFAULT_Kp 22.36
+  //#define DEFAULT_Ki 1.63
+  //#define DEFAULT_Kd 76.48
+
+  //Anycubic V5 J-head 50w
+  #define DEFAULT_Kp 14.46
+  #define DEFAULT_Ki 0.87
+  #define DEFAULT_Kd 60.43
 
 #endif // PIDTEMP
 
@@ -523,9 +528,9 @@
   // this is for the aluminium bed with a BuildTak-like sticker on it
   // from pid autotune. "M303 E-1 C8 S60" to run autotune on the bed at 60 degreesC for 8 cycles
   #if ANYCUBIC_KOSSEL_ENABLE_BED == 1
-    #define DEFAULT_bedKp 374.03
-    #define DEFAULT_bedKi 72.47
-    #define DEFAULT_bedKd 482.59
+    #define  DEFAULT_bedKp 349.5
+    #define  DEFAULT_bedKi 67.73
+    #define  DEFAULT_bedKd 450.98
   #elif ANYCUBIC_KOSSEL_ENABLE_BED == 2
     // TODO get real PID values for Ultrabase Bed
     #define DEFAULT_bedKp 374.03
@@ -619,7 +624,7 @@
   #define DELTA_SEGMENTS_PER_SECOND 80
 
   // After homing move down to a height where XY movement is unconstrained
-  #define DELTA_HOME_TO_SAFE_ZONE
+  //#define DELTA_HOME_TO_SAFE_ZONE
 
   // Delta calibration menu
   // uncomment to add three points calibration menu option.
@@ -635,7 +640,7 @@
 
   #if ENABLED(DELTA_AUTO_CALIBRATION)
     // set the default number of probe points : n*n (1 -> 7)
-    #define DELTA_CALIBRATION_DEFAULT_POINTS 4
+    #define DELTA_CALIBRATION_DEFAULT_POINTS 7
   #endif
 
   #if EITHER(DELTA_AUTO_CALIBRATION, DELTA_CALIBRATION_MENU)
@@ -751,14 +756,14 @@
  *          TMC5160, TMC5160_STANDALONE
  * :['A4988', 'A5984', 'DRV8825', 'LV8729', 'L6470', 'TB6560', 'TB6600', 'TMC2100', 'TMC2130', 'TMC2130_STANDALONE', 'TMC2160', 'TMC2160_STANDALONE', 'TMC2208', 'TMC2208_STANDALONE', 'TMC26X', 'TMC26X_STANDALONE', 'TMC2660', 'TMC2660_STANDALONE', 'TMC5130', 'TMC5130_STANDALONE', 'TMC5160', 'TMC5160_STANDALONE']
  */
-//#define X_DRIVER_TYPE  A4988
-//#define Y_DRIVER_TYPE  A4988
-//#define Z_DRIVER_TYPE  A4988
+#define X_DRIVER_TYPE  TMC2208_STANDALONE
+#define Y_DRIVER_TYPE  TMC2208_STANDALONE
+#define Z_DRIVER_TYPE  TMC2208_STANDALONE
 //#define X2_DRIVER_TYPE A4988
 //#define Y2_DRIVER_TYPE A4988
 //#define Z2_DRIVER_TYPE A4988
 //#define Z3_DRIVER_TYPE A4988
-//#define E0_DRIVER_TYPE A4988
+#define E0_DRIVER_TYPE TMC2208_STANDALONE
 //#define E1_DRIVER_TYPE A4988
 //#define E2_DRIVER_TYPE A4988
 //#define E3_DRIVER_TYPE A4988
@@ -824,7 +829,7 @@
  * Override with M203
  *                                      X, Y, Z, E0 [, E1[, E2[, E3[, E4[, E5]]]]]
  */
-#define DEFAULT_MAX_FEEDRATE          { 100, 100, 100, 100}
+#define DEFAULT_MAX_FEEDRATE          { 500, 500, 500, 125}
 
 /**
  * Default Max Acceleration (change/s) change = mm/s
@@ -832,7 +837,7 @@
  * Override with M201
  *                                      X, Y, Z, E0 [, E1[, E2[, E3[, E4[, E5]]]]]
  */
-#define DEFAULT_MAX_ACCELERATION       { 3000, 3000, 3000, 3000 }
+#define DEFAULT_MAX_ACCELERATION       { 4000, 4000, 4000, 4000 }
 
 /**
  * Default Acceleration (change/s) change = mm/s
@@ -843,7 +848,7 @@
  *   M204 T    Travel Acceleration
  */
 #define DEFAULT_ACCELERATION          3000    // X, Y, Z and E acceleration for printing moves
-#define DEFAULT_RETRACT_ACCELERATION  3000    // E acceleration for retracts
+#define DEFAULT_RETRACT_ACCELERATION   800    // E acceleration for retracts
 #define DEFAULT_TRAVEL_ACCELERATION   3000    // X, Y, Z acceleration for travel (non printing) moves
 
 //
@@ -1089,8 +1094,8 @@
  *     But: `M851 Z+1` with a CLEARANCE of 2  =>  2mm from bed to nozzle.
  */
 #define Z_CLEARANCE_DEPLOY_PROBE   30 // Z Clearance for Deploy/Stow
-#define Z_CLEARANCE_BETWEEN_PROBES 5 // Z Clearance between probe points
-#define Z_CLEARANCE_MULTI_PROBE    5 // Z Clearance between multiple probes
+#define Z_CLEARANCE_BETWEEN_PROBES 2 // Z Clearance between probe points
+#define Z_CLEARANCE_MULTI_PROBE    1 // Z Clearance between multiple probes
 #define Z_AFTER_PROBING            5 // Z position after probing is done
 
 #define Z_PROBE_LOW_POINT          -2 // Farthest distance below the trigger-point to go before stopping
@@ -1146,9 +1151,9 @@
 // @section machine
 
 // Invert the stepper direction. Change (or reverse the motor connector) if an axis goes the wrong way.
-#define INVERT_X_DIR true
-#define INVERT_Y_DIR true
-#define INVERT_Z_DIR true
+#define INVERT_X_DIR false
+#define INVERT_Y_DIR false
+#define INVERT_Z_DIR false
 
 // @section extruder
 
@@ -1557,7 +1562,7 @@
 // When enabled Marlin will send a busy status message to the host
 // every couple of seconds when it can't accept commands.
 //
-#define HOST_KEEPALIVE_FEATURE        // Disable this if your host doesn't like keepalive messages
+//#define HOST_KEEPALIVE_FEATURE        // Disable this if your host doesn't like keepalive messages
 #define DEFAULT_KEEPALIVE_INTERVAL 2  // Number of seconds between "busy" messages. Set with M113.
 #define BUSY_WHILE_HEATING            // Some hosts require "busy" messages even during heating
 
@@ -1580,14 +1585,14 @@
 
 // Preheat Constants
 #define PREHEAT_1_LABEL       "PLA"
-#define PREHEAT_1_TEMP_HOTEND 190
-#define PREHEAT_1_TEMP_BED     60
-#define PREHEAT_1_FAN_SPEED   255 // Value from 0 to 255
+#define PREHEAT_1_TEMP_HOTEND 205
+#define PREHEAT_1_TEMP_BED     65
+#define PREHEAT_1_FAN_SPEED    60 // Value from 0 to 255
 
-#define PREHEAT_2_LABEL       "ABS"
-#define PREHEAT_2_TEMP_HOTEND 240
-#define PREHEAT_2_TEMP_BED    100
-#define PREHEAT_2_FAN_SPEED   255 // Value from 0 to 255
+#define PREHEAT_2_LABEL       "PETG"
+#define PREHEAT_2_TEMP_HOTEND 238
+#define PREHEAT_2_TEMP_BED     75
+#define PREHEAT_2_FAN_SPEED    60 // Value from 0 to 255
 
 /**
  * Nozzle Park
@@ -1823,7 +1828,7 @@
 //  If CLOCKWISE normally moves DOWN this makes it go UP.
 //  If CLOCKWISE normally moves UP this makes it go DOWN.
 //
-//#define REVERSE_MENU_DIRECTION
+#define REVERSE_MENU_DIRECTION
 
 //
 // Individual Axis Homing
