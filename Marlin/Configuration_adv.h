@@ -279,7 +279,7 @@
  */
 #define USE_CONTROLLER_FAN
 #if ENABLED(USE_CONTROLLER_FAN)
-  #define CONTROLLER_FAN_PIN SERVO2_PIN  // Set a custom pin for the controller fan
+  #define CONTROLLER_FAN_PIN P1_26  // Set a custom pin for the controller fan
   #define CONTROLLERFAN_SECS 60          // Duration in seconds for the fan to run after all motors are disabled
   #define CONTROLLERFAN_SPEED 255        // 255 == full speed
 #endif
@@ -345,7 +345,7 @@
  * Multiple extruders can be assigned to the same pin in which case
  * the fan will turn on when any selected extruder is above the threshold.
  */
-#define E0_AUTO_FAN_PIN SERVO1_PIN
+#define E0_AUTO_FAN_PIN P1_28
 #define E1_AUTO_FAN_PIN -1
 #define E2_AUTO_FAN_PIN -1
 #define E3_AUTO_FAN_PIN -1
@@ -1640,9 +1640,6 @@
  */
 #if HAS_TRINAMIC
 
-  #define X_CS_PIN           63
-  #define Y_CS_PIN           64
-
   #define R_SENSE           0.11  // R_sense resistor for SilentStepStick2130
 
   #define HOLD_MULTIPLIER    0.5  // Scales down the holding current from run current
@@ -1793,9 +1790,9 @@
    * Use Trinamic's ultra quiet stepping mode.
    * When disabled, Marlin will use spreadCycle stepping mode.
    */
-  //#define STEALTHCHOP_XY
-  //#define STEALTHCHOP_Z
-  //#define STEALTHCHOP_E
+  #define STEALTHCHOP_XY
+  #define STEALTHCHOP_Z
+  #define STEALTHCHOP_E
 
   /**
    * Optimize spreadCycle chopper parameters by using predefined parameter sets
@@ -1839,21 +1836,21 @@
    * STEALTHCHOP_(XY|Z|E) must be enabled to use HYBRID_THRESHOLD.
    * M913 X/Y/Z/E to live tune the setting
    */
-  //#define HYBRID_THRESHOLD
+  #define HYBRID_THRESHOLD
 
-  #define X_HYBRID_THRESHOLD     100  // [mm/s]
-  #define X2_HYBRID_THRESHOLD    100
-  #define Y_HYBRID_THRESHOLD     100
-  #define Y2_HYBRID_THRESHOLD    100
-  #define Z_HYBRID_THRESHOLD       3
-  #define Z2_HYBRID_THRESHOLD      3
-  #define Z3_HYBRID_THRESHOLD      3
-  #define E0_HYBRID_THRESHOLD     30
-  #define E1_HYBRID_THRESHOLD     30
-  #define E2_HYBRID_THRESHOLD     30
-  #define E3_HYBRID_THRESHOLD     30
-  #define E4_HYBRID_THRESHOLD     30
-  #define E5_HYBRID_THRESHOLD     30
+  #define X_HYBRID_THRESHOLD     183  // [mm/s]
+  #define X2_HYBRID_THRESHOLD    183
+  #define Y_HYBRID_THRESHOLD     183
+  #define Y2_HYBRID_THRESHOLD    183
+  #define Z_HYBRID_THRESHOLD       2
+  #define Z2_HYBRID_THRESHOLD      2
+  #define Z3_HYBRID_THRESHOLD      2
+  #define E0_HYBRID_THRESHOLD     33
+  #define E1_HYBRID_THRESHOLD     33
+  #define E2_HYBRID_THRESHOLD     33
+  #define E3_HYBRID_THRESHOLD     33
+  #define E4_HYBRID_THRESHOLD     33
+  #define E5_HYBRID_THRESHOLD     33
 
   /**
    * TMC2130, TMC2160, TMC2209, TMC2660, TMC5130, and TMC5160 only
