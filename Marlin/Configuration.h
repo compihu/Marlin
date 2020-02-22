@@ -759,7 +759,7 @@
  * Override with M201
  *                                      X, Y, Z, E0 [, E1[, E2...]]
  */
-#define DEFAULT_MAX_ACCELERATION      { 4000, 4000, 40, 3000 }
+#define DEFAULT_MAX_ACCELERATION      { 4000, 4000, 40, 9000 }
 
 //#define LIMITED_MAX_ACCEL_EDITING     // Limit edit via M201 or LCD to DEFAULT_MAX_ACCELERATION * 2
 #if ENABLED(LIMITED_MAX_ACCEL_EDITING)
@@ -798,7 +798,7 @@
   #endif
 #endif
 
-#define DEFAULT_EJERK    10.0  // May be used by Linear Advance
+#define DEFAULT_EJERK    100.0  // May be used by Linear Advance
 
 /**
  * Junction Deviation Factor
@@ -1075,9 +1075,9 @@
 
 //#define NO_MOTION_BEFORE_HOMING // Inhibit movement until all axes have been homed
 
-//#define UNKNOWN_Z_NO_RAISE      // Don't raise Z (lower the bed) if Z is "unknown." For beds that fall when Z is powered off.
+#define UNKNOWN_Z_NO_RAISE      // Don't raise Z (lower the bed) if Z is "unknown." For beds that fall when Z is powered off.
 
-//#define Z_HOMING_HEIGHT  4      // (mm) Minimal Z height before homing (G28) for Z clearance above the bed, clamps, ...
+#define Z_HOMING_HEIGHT  10      // (mm) Minimal Z height before homing (G28) for Z clearance above the bed, clamps, ...
                                   // Be sure to have this much clearance over your Z_MAX_POS to prevent grinding.
 
 //#define Z_AFTER_HOMING  10      // (mm) Height to move to after homing Z
@@ -1100,7 +1100,7 @@
 #define Z_MIN_POS 0
 #define X_MAX_POS X_BED_SIZE + 25
 #define Y_MAX_POS Y_BED_SIZE + 35
-#define Z_MAX_POS 319
+#define Z_MAX_POS 410
 
 /**
  * Software Endstops
